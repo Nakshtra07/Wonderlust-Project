@@ -1,0 +1,46 @@
+<%layout("/layouts/boilerplate")%>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h3>
+                Edit Lisitng
+            </h3>
+            <br>
+            <form method="POST" action="/listings/<%=data.id%>?_method=PUT" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" class="form-control" value="<%=data.title%>">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" class="form-control"><%=data.description%></textarea>
+                </div>
+                <div class="mb-3">
+                    <img src="<%=originalImageUrl%>">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload new image</label>
+                    <input type="file"  name="listing[image]" class="form-control" >
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" value="<%=data.price%>" name="listing[price]" class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" value="<%=data.country%>" name="listing[country]" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" value="<%=data.location%>" name="listing[location]" class="form-control">
+                </div>
+                <br>
+                <br>
+                <button class="btn btn-dark edt-btn">Edit</button>
+                <br><br>
+            </form>
+        </div>
+
+    </div>
