@@ -105,9 +105,14 @@ app.get("/login", (req, res) => {
     res.redirect("/users/login");
 });
 
-app.get("/register", (req, res) => {
-    res.redirect("/users/register");
+app.get("/signup", (req, res) => {
+    res.redirect("/users/signup");
 });
+
+app.get("/logout", (req, res) => {
+    res.redirect("/users/logout");
+});
+
 
 
 
