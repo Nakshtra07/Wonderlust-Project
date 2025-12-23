@@ -101,6 +101,15 @@ app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
+app.get("/login", (req, res) => {
+    res.redirect("/users/login");
+});
+
+app.get("/register", (req, res) => {
+    res.redirect("/users/register");
+});
+
+
 
 // =======================
 // DEMO USER ROUTE
