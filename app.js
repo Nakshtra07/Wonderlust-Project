@@ -119,7 +119,7 @@ app.get("/demouser", async (req, res) => {
 // =======================
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter);
+app.use("/users", userRouter);
 
 // =======================
 // ERROR HANDLER
@@ -141,10 +141,10 @@ async function startServer() {
         console.log("✅ Connected to MongoDB");
 
         app.listen(PORT, () => {
-            console.log(`🚀 Server running on port ${PORT}`);
+            console.log(` Server running on port ${PORT}`);
         });
     } catch (err) {
-        console.error("❌ MongoDB connection failed:", err);
+        console.error(" MongoDB connection failed:", err);
     }
 }
 
