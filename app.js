@@ -98,12 +98,8 @@ app.use((req, res, next) => {
 // ROOT ROUTE (IMPORTANT)
 // =======================
 app.get("/", (req, res) => {
-    res.status(200).json({
-        status: "ok",
-        message: "Wanderlust API is running",
-    });
+    res.redirect("/listings");
 });
-
 
 
 // =======================
