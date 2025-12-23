@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != "production"){
+if (process.env.NODE_ENV != "production") {
     require('dotenv').config();
 }
 
@@ -31,25 +31,24 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(method("_method"));
 
 const store = MongoStore.create({
-    mongoUrl: dburl, 
-    crypto:{
-        secret : process.env.SECRET,
+    mongoUrl: dburl,
+    crypto: {
+        secret: process.env.SECRET,
     },
     touchAfter: 24 * 3600,
 });
 
-store.on("error",()=>{
+store.on("error", (err) => {
     console.log("Error in Mongo session store", err);
-})
-
+});
 const sessionOptions = {
     store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie:{
-        expires : Date.now() + 7*24*60*60*1000,
-        maxAge: 7*24*60*60*1000,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     },
 };
@@ -62,14 +61,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
     res.locals.successmsg = req.flash("success");
     res.locals.errormsg = req.flash("error");
     res.locals.currUser = req.user;
     next();
 })
 
-app.get("/demouser",async (req,res)=>{
+app.get("/demouser", async (req, res) => {
     let fakeUser = new User({
         email: "student12@gmail.com",
         username: "delta-student"
@@ -88,11 +87,14 @@ main()
         console.log("connection is successfull")
     })
     .catch(err => {
-        console.log("there is an error")
+        console.error('MongoDB connection error:', err);
     });
 
 async function main() {
-    await mongoose.connect(dburl);
+    await mongoose.connect(dburl,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
 }
 
 // app.get("/", (req, res) => {
