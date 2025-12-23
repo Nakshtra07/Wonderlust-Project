@@ -1,3 +1,6 @@
+console.log("APP.JS IS RUNNING - VERSION A1");
+
+
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
